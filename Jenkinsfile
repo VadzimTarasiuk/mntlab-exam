@@ -58,7 +58,7 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
        
-        sh "ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vv"    
+        sh "ansible-playbook deploy.yml -e artefact=./target/mnt-exam.war -vv"    
       }
     }
   }
@@ -76,10 +76,9 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         
-        sh "ansible-playbook application_tests.yml -e artefact=./some-war-app-42.war -vv"    
+        sh "ansible-playbook application_tests.yml -e artefact=./target/mnt-exam.war"    
       }
     }
-    sh 'nohup vagrant up'
     sh 'cat createvm.yml'
     sh 'cat provisionvm.yml'
     sh 'cat roles/nginx/tasks/main.yml'
