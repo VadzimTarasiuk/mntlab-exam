@@ -22,8 +22,10 @@ node("${env.SLAVE}") {
     /*
         use ansible to create VM (with developed vagrant module)
     */
-    ansiColor('xterm') {    
-      echo 'ansible-playbook createvm.yml -vv'
+    withEnv([    "ANSIBLE_FORCE_COLOR=true",     "PYTHONUNBUFFERED=1"]) {     
+    ansiColor('xterm') {        
+        sh "ansible-playbook createvm.yml -vv"    
+      }
     }
     sh "echo ansible-playbook createvm.yml ..."
   }
