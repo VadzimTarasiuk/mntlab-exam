@@ -26,7 +26,7 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         
-        sh "nohup ansible-playbook createvm.yml -vv &"    
+        sh "nohup ansible-playbook createvm.yml -vv"    
       }
     }
     sh "echo ansible-playbook createvm.yml ..."
