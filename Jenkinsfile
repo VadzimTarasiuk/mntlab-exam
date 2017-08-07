@@ -76,12 +76,12 @@ node("${env.SLAVE}") {
         - Deployment Job
     */
     sh 'echo $(vagrant status)'
-    withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
+    /*withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         sh 'cat application_tests.yml'
         sh "ansible-playbook application_tests.yml -vv"    
       }
-    }
+    }*/
     sh "echo ansible-playbook application_tests.yml -e artefact=... ..."
   }
 
