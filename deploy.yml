@@ -30,4 +30,3 @@
     copy: 
       src: ./deploy-info.txt
       dest: /var/lib/tomcat/webapps
-    when: info['vagrant_state'] == "running"
