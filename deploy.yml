@@ -20,5 +20,10 @@
       password: tomcat
     when: info['vagrant_state'] == "running"
 
+  - name: Debug
+    debug: msg={{ info['vagrant_state'] }}
+
   - name: Transfer info-file
     shell: "scp -i {{ info['path_to_sshkey'] }} deploy-info.txt {{ info['username_toconnect'] }}@{{ info['ip_addr'] }}:/var/lib/tomcat/webapps"
+    become: yes
+    become_user: student
