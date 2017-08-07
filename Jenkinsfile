@@ -2,7 +2,7 @@ node("${env.SLAVE}") {
 
   stage("Build"){
     git branch: 'vtarasiuk', url: 'https://github.com/VadzimTarasiuk/mntlab-exam.git'
-    sh 'mvn clean package -DbuildNumber=$BUILD_NUMBER'
+    sh '/home/student/apache-maven-3.5.0/bin/mvn clean package -DbuildNumber=$BUILD_NUMBER'
     sh "echo build artefact"
   }
 
