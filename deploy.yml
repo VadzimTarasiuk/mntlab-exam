@@ -6,7 +6,6 @@
 - name: "Deploy War to Tomcat"
   hosts: localhost
   vars:  
-    war: "./target/mnt-exam.war"
     artefact: "./target/mnt-exam.war"
   
   tasks:

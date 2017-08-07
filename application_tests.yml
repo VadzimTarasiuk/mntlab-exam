@@ -1,15 +1,17 @@
 - name: Check access play
   hosts: localhost
-  include_vars: deploy.yml
+  include_vars:
+    file: deploy.yml
+    name: artefact
   vars:
-      war_name: "{{ war | basename }}"
+      war_name: "{{ artefact | basename }}"
 
   tasks:
 
     - name: Check Access
-    uri:
-      url: "http://{{ info['ip_addr'] }}/{{ war_name }}"
-      status_code: 200 
+      uri:
+        url: "http://{{ info['ip_addr'] }}/{{ war_name }}"
+        status_code: 200 
 
 - name: Web Service Testing
   hosts: vagrant
