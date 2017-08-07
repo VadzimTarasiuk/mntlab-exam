@@ -26,7 +26,7 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         
-        sh "nohup ansible-playbook createvm.yml -vv"    
+        sh "nohup ansible-playbook createvm.yml -vv &"    
       }
     }
     sh "nohup echo ansible-playbook createvm.yml ..."
@@ -40,7 +40,7 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         
-        sh "nohup ansible-playbook provisionvm.yml -vv"    
+        sh "nohup ansible-playbook provisionvm.yml -vv &"    
       }
     }
     sh "nohup echo ansible-playbook provisionvm.yml ..."
@@ -60,7 +60,7 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
        
-        sh "nohup ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vv"    
+        sh "nohup ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vv &"    
       }
     }
     sh "nohup echo ansible-playbook deploy.yml -e artefact=... ..."
@@ -79,7 +79,7 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         
-        sh "nohup ansible-playbook application_tests.yml -e artefact=./some-war-app-42.war -vv"    
+        sh "nohup ansible-playbook application_tests.yml -e artefact=./some-war-app-42.war -vv &"    
       }
     }
     sh "nohup echo ansible-playbook application_tests.yml -e artefact=... ..."
