@@ -1,7 +1,9 @@
+- name: "No need to Check if VM is not running..."
+  hosts: localhost
+- include: createvm.yml
+
 - name: Check access play
   hosts: localhost
-
-- include: createvm.yml
 
   vars:
     artefact: "./some-war-app-42.war"
