@@ -1,3 +1,9 @@
+- name: Create VM
+  include_playbook: createvm.yml
+
+- name: Provision VM
+  include_playbook: provisionvm.yml
+
 - name: "Deploy War to Tomcat"
   hosts: localhost
   roles:

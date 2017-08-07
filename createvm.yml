@@ -5,7 +5,7 @@
 
   - name: Persist VM-state is Started
     vagrant_check: 
-      path: /home/student/mntlab-exam
+      path: ./Vagrantfile
       state: started
     register: info
   - name: Debugger
