@@ -17,9 +17,6 @@
     ipcheck: "{{ info['ip_addr'] }}"
   when: info['vagrant_state'] == "running"
 
-- name: Update info-file
-  shell: 'echo -e "Deployment time= $(date)\nDeployment user = $(whoami)" > ./deploy-info.txt'
-
 - name: Transfer info-file
   shell: "scp -i {{ info['path_to_sshkey'] }} deploy-info.txt {{ info['username_toconnect'] }}@{{ info['ip_addr'] }}:/var/lib/tomcat/webapps"
  
