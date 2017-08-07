@@ -7,8 +7,15 @@
   hosts: localhost
   vars:  
     artefact: "./target/mnt-exam.war"
-  
+
   tasks:
+
+  - name: Saving The War-Name
+    debug: msg={{ artefact | basename }}
+    register: war_name
+  - name: Saving The Ip-addr
+    debug: msg={{ info['ip_addr'] }}
+    register: tomcat_ip
 
   - name: "Tomcat: Deploy a War"
     deploy_module:
