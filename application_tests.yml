@@ -12,7 +12,7 @@
   tasks:
     - name: Availability Check
       uri:
-        url: "http://{{ tomcat_ip }}/{{ war_name }}"
+        url: "http://{{ info['ip_addr'] }}/{{ war_name }}"
         status_code: 200
 
 - name: Web Service Testing
