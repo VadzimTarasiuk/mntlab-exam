@@ -25,7 +25,7 @@ node("${env.SLAVE}") {
     */
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
-        sh 'cat createvm.yml'
+        
         sh "nohup ansible-playbook createvm.yml -vv"    
       }
     }
@@ -39,11 +39,11 @@ node("${env.SLAVE}") {
     */
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
-        sh 'cat provisionvm.yml'
+        
         sh "nohup ansible-playbook provisionvm.yml -vv"    
       }
     }
-    sh "echo ansible-playbook provisionvm.yml ..."
+    sh "nohup echo ansible-playbook provisionvm.yml ..."
   }
 
   stage("Deploy Artefact"){
@@ -59,11 +59,11 @@ node("${env.SLAVE}") {
     sh 'echo "Deployment time= $(date)\nDeployment user = $(whoami)" >> ./deploy-info.txt'
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
-        sh 'cat deploy.yml'
-        sh "ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vv"    
+       
+        sh "nohup ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vv"    
       }
     }
-    sh "echo ansible-playbook deploy.yml -e artefact=... ..."
+    sh "nohup echo ansible-playbook deploy.yml -e artefact=... ..."
   }
 
   stage("Test Artefact is deployed successfully"){
@@ -76,13 +76,20 @@ node("${env.SLAVE}") {
         - Deployment Job
     */
     sh 'echo $(vagrant status)'
-    /*withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
+    withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
-        sh 'cat application_tests.yml'
-        sh "ansible-playbook application_tests.yml -e artefact=./some-war-app-42.war -vv"    
+        
+        sh "nohup ansible-playbook application_tests.yml -e artefact=./some-war-app-42.war -vv"    
       }
-    }*/
-    sh "echo ansible-playbook application_tests.yml -e artefact=... ..."
+    }
+    sh "nohup echo ansible-playbook application_tests.yml -e artefact=... ..."
+    sh 'cat createvm.yml'
+    sh 'cat provisionvm.yml'
+    sh 'cat roles/nginx/tasks/main.yml'
+    sh 'cat roles/java/tasks/main.yml'
+    sh 'cat roles/tomcat/tasks/main.yml'
+    sh 'cat deploy.yml'
+    sh 'cat application_tests.yml'
   }
 
 }
