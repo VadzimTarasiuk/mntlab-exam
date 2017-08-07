@@ -79,7 +79,7 @@ node("${env.SLAVE}") {
     /*withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         sh 'cat application_tests.yml'
-        sh "ansible-playbook application_tests.yml -vv"    
+        sh "ansible-playbook application_tests.yml -e artefact=./some-war-app-42.war -vv"    
       }
     }*/
     sh "echo ansible-playbook application_tests.yml -e artefact=... ..."

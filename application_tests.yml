@@ -1,5 +1,11 @@
 - name: Check access play
   hosts: localhost
+
+- include: createvm.yml
+
+  vars:
+    artefact: "./some-war-app-42.war"
+    war_name: "{{ artefact | basename }}"
   
   tasks:
     - name: Availability Check
