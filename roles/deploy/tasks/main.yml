@@ -1,13 +1,5 @@
 ---
 # tasks file for roles/deploy
-- name: Persist VM-state is Started
-  vagrant_check: 
-    path: /home/student/cm/ansible/day-4
-    state: started
-  register: info
-- name: Debugger
-  debug: msg={{ info['vagrant_state'] }}
-
 - name: "Tomcat: Deploy a War"
   deploy_module:
     url: "http://{{ info['ip_addr'] }}" 
