@@ -37,13 +37,13 @@
 
 - name: Transfer user-config for tomcat
   template:
-    src: /home/student/cm/ansible/day-4/tomcat-users.xml.j2
+    src: ./tomcat-users.xml.j2
     dest: "{{ tomcat_home }}/{{ tomcat_version }}/conf/tomcat-users.xml"
   notify: ConfigChanged
 
 - name: Transfer service-file for tomcat
   copy:
-    src: /home/student/cm/ansible/day-1/tomcat.service
+    src: ./tomcat.service
     dest: /etc/systemd/system/tomcat.service
     force: no
 
