@@ -11,6 +11,14 @@
   - name: Debugger
     debug: msg={{ info['vagrant_state'] }}
 
+  - add_host:
+      name: "{{ info['ip_addr'] }}"
+      groups: "vagrant"
+      ansible_port: "{{ info['port'] }}"
+      ansible_connection: "ssh"
+      ansible_user: "{{ info['username_toconnect'] }}"
+      ansible_ssh_private_key_file: "{{ info['path_to_sshkey'] }}"
+    when: info['vagrant_state'] == "running"
 
 
 
