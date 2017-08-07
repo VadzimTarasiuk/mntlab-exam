@@ -1,6 +1,8 @@
-- name: Provision VM
+- name: Create VM
   hosts: localhost
 - include: createvm.yml
+- name: Provision VM
+  hosts: localhost
 - include: provisionvm.yml
 
 - name: "Deploy War to Tomcat"

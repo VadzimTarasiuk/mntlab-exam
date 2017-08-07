@@ -40,6 +40,9 @@ elif [[ `echo $a | grep "running (virtualbox)"` > 0 ]];
 elif [[ `echo $a | grep "poweroff (virtualbox)"` > 0 ]]; 
 	then		
 	v_status="poweroff"	
+elif [[ `echo $a | grep "aborted (virtualbox)"` > 0 ]]; 
+	then		
+	v_status="aborted"	
 fi	
 }
 
