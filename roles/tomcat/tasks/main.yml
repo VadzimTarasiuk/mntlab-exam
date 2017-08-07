@@ -36,17 +36,16 @@
   notify: ConfigChanged
 
 - name: Transfer user-config for tomcat
-  copy:
-    src: ./tomcat-users.xml
+  template:
+    src: ./tomcat-users.xml.j2
     dest: "{{ tomcat_home }}/{{ tomcat_version }}/conf/tomcat-users.xml"
-    force: yes
   notify: ConfigChanged
 
 - name: Transfer service-file for tomcat
-  copy:
-    src: ./tomcat.service
+  template:
+    src: ./tomcat.service.j2
     dest: /etc/systemd/system/tomcat.service
-    force: yes
+   
 
 - name: Creating an abcolute and actual path for Catalina
   blockinfile:
