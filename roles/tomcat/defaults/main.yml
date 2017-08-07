@@ -1,0 +1,9 @@
+---
+# defaults file for tomcat
+tomcat_version_maj: 8
+tomcat_version_stage: 0
+tomcat_version_minor: 22
+tomcat_version: "{{ tomcat_version_maj }}.{{ tomcat_version_stage }}.{{ tomcat_version_minor }}"
+tomcat_user: tomcat_as
+tomcat_group: tomcat_as_group
+tomcat_home: /opt/tomcat

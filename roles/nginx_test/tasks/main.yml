@@ -1,0 +1,4 @@
+---
+# tasks file for nginx_test
+- name: DEBUG INFO
+  debug: var=nginx_version['stdout']

@@ -1,0 +1,7 @@
+---
+# vars file for roles/deploy
+war: "./hello-war/target/mnt-lab.war"
+war_name: "{{ war | basename }}"
+GIT_URL: 42
+GIT_COMMIT: 42 
+GIT_BRANCH: 42

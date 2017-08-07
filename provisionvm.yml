@@ -1,0 +1,37 @@
+#!/usr/bin/env ansible-playbook --become --become-user=root
+
+- name: Web Service Provisioning
+  hosts: vagrant
+  become: yes
+  become_user: root
+  roles: 
+  - role: nginx
+  - role: tomcat
+    tomcat_user: myuser 
+    tomcat_group: thisgroup 
+    tomcat_home: /opt/as/tomcat 
+    tomcat_version_maj: 8
+    tomcat_version_stage: 0
+    tomcat_version_minor: 21
+    java_version: 1.8.0
+  
+  post_tasks:
+    - name: Nginx Start and Enable
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Startup and Enable Tomcat
+      service:
+        name: tomcat.service
+        state: started
+        enabled: yes
+
+
+- name: Web Service Testing
+  hosts: vagrant
+  roles:
+    - role: nginx_test
+    - role: java_test
+    - role: tomcat_test

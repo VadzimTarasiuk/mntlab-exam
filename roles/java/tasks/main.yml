@@ -1,0 +1,9 @@
+---
+# tasks file for java
+- name: DEBUG INFO
+  debug: var=java_version
+  
+- name: Java Install 
+  yum:
+    name: java-{{ java_version }}-openjdk-devel.x86_64
+    state: present

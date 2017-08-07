@@ -1,0 +1,10 @@
+---
+# tasks file for tomcat_test
+- name: DEBUG INFO - tomcat version
+  debug: var=tomcat_version
+- name: DEBUG INFO - tomcat user
+  debug: var=tomcat_user
+- name: DEBUG INFO - tomcat group
+  debug: var=tomcat_group
+- name: DEBUG INFO - tomcat home
+  debug: var=tomcat_home

@@ -1,0 +1,9 @@
+---
+# vars file for tomcat
+tomcat_version_maj: 8
+tomcat_version_stage: 0
+tomcat_version_minor: 23
+tomcat_version: "{{ tomcat_version_maj }}.{{ tomcat_version_stage }}.{{ tomcat_version_minor }}"
+tomcat_user: tomcat_user
+tomcat_group: tomcat_group
+tomcat_home: /opt/tomcat

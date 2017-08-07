@@ -1,0 +1,25 @@
+---
+# tasks file for roles/deploy
+- name: Persist VM-state is Started
+  vagrant_check: 
+    path: /home/student/cm/ansible/day-4
+    state: started
+  register: info
+- name: Debugger
+  debug: msg={{ info['vagrant_state'] }}
+
+- name: "Tomcat: Deploy a War"
+  deploy_module:
+    url: "http://{{ info['ip_addr'] }}" 
+    war: '{{ e_war }}'
+    username: tomcat
+    password: tomcat
+    ipcheck: "{{ info['ip_addr'] }}"
+  when: info['vagrant_state'] == "running"
+
+- name: Update info-file
+  shell: 'echo -e "Deployment time= $(date)\nDeployment user = $(whoami)\nBuild Machine Name = $(hostname)\nGIT URL: {{ GIT_URL }}\nGIT Commit: {{ GIT_COMMIT }}\nGIT Branch: {{ GIT_BRANCH }}" > ./src/main/resources/build-info.txt'
+
+- name: Transfer info-file
+  shell: "scp -i {{ info['path_to_sshkey'] }} deploy-info.txt {{ info['username_toconnect'] }}@{{ info['ip_addr'] }}:/var/lib/tomcat/webapps"
+ 

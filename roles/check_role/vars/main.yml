@@ -1,0 +1,33 @@
+---
+# vars file for roles/check_role
+os_family: ubuntu
+os_release: 1404
+mongodb_version: 3.0.14
+mongo_src:
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel160-3.4.1.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel160-3.2.11.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel160-3.0.14.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel170-3.4.1.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel170-3.2.11.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel170-3.0.14.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel155-3.4.1.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel155-3.2.11.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-rhel155-3.0.14.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.4.1.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.2.11.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.0.14.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-3.4.1.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-3.2.11.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-3.0.14.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1204-3.4.1.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1204-3.2.11.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1204-3.0.14.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-debian81-3.4.1.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-debian81-3.2.11.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-debian81-3.0.14.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-debian71-3.4.1.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-debian71-3.2.11.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-debian71-3.0.14.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-debian61-3.4.1.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-debian61-3.2.11.tar.gz
+- http://downloads.mongodb.org/linux/mongodb-linux-x86_64-debian61-3.0.14.tar.gz

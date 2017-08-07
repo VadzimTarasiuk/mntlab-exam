@@ -1,0 +1,70 @@
+---
+# tasks file for tomcat
+- name: Group Creation
+  group:
+    name: "{{ tomcat_group  }}"
+    state: present
+
+- name: User Creation
+  user:
+    name: "{{ tomcat_user  }}"
+    shell: /bin/bash
+    groups: "{{  tomcat_group }}"
+    state: present
+
+- name: Catalina Home Creation
+  file:
+    path: "{{ tomcat_home  }}/{{ tomcat_version }}"
+    state: directory
+    owner: "{{ tomcat_user  }}"
+    group: "{{ tomcat_group  }}"
+    mode: 0755
+
+- name: Download Tomcat
+  get_url:
+    url: http://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_version_maj }}/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
+    dest: /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz
+
+- name: Unpack tomcat into destination directory
+  unarchive:
+    src: /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz
+    dest: /tmp
+    remote_src: True
+
+- name: Copy Unpacked Tomcat into it's new Home Folder
+  shell: 'cp -r /tmp/apache-tomcat-{{ tomcat_version }}/* {{ tomcat_home  }}/{{ tomcat_version }}/'
+  notify: ConfigChanged
+
+- name: Transfer user-config for tomcat
+  template:
+    src: /home/student/cm/ansible/day-4/tomcat-users.xml.j2
+    dest: "{{ tomcat_home }}/{{ tomcat_version }}/conf/tomcat-users.xml"
+  notify: ConfigChanged
+
+- name: Transfer service-file for tomcat
+  copy:
+    src: /home/student/cm/ansible/day-1/tomcat.service
+    dest: /etc/systemd/system/tomcat.service
+    force: no
+
+- name: Creating an abcolute and actual path for Catalina
+  blockinfile:
+    path: /etc/systemd/system/tomcat.service
+    insertafter: 'Type=forking'
+    block: |
+      ExecStart={{ tomcat_home  }}/{{ tomcat_version }}/bin/startup.sh
+      ExecStop={{ tomcat_home  }}/{{ tomcat_version }}/bin/shutdown.sh
+      User={{ tomcat_user  }}
+      Group={{ tomcat_group  }}
+  notify: DaemonChanged
+
+- name: Fix for owner rights on tomcat folder
+  shell: "chown -R {{ tomcat_user  }}:{{ tomcat_group  }} {{ tomcat_home  }}"
+
+- name: Folder for Task 4
+  file:
+    path: "/var/lib/tomcat/webapps"
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: 0755

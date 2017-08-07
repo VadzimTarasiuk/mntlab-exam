@@ -1,0 +1,33 @@
+#!/bin/bash
+
+source $1
+
+usage="arguments: url=<server url>, war=<filename>, username=<admin>, password=<12345>";
+
+stats_definer () {
+	if [[ ( -z "$url" ) || ( -z "$war" ) || ( -z "$username") || ( -z "$password" )  ]];
+		then
+		echo $usage
+		exit 0;
+	fi
+}
+
+war_deployer () {
+	war_name=$(basename $war)
+	war_dir=$(dirname $war)
+	curl -u "$username:$password" "$url/manager/text/undeploy?path=/$war_name"
+	curl -u "$username:$password" --upload-file "$war_dir/$war_name" "$url/manager/text/deploy?path=/$war_name"
+	output="War-file deployed and accessible"
+}
+
+stats_definer
+war_deployer
+
+#Output Here
+cat << EOF
+{
+	"changed": false,
+	"failed": false,
+	"output": "$output"
+}
+EOF

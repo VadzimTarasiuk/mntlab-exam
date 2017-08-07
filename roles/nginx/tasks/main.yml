@@ -1,0 +1,16 @@
+---
+# tasks file for nginx
+- name: Nginx Install 
+  yum:
+    name: nginx
+    state: present
+
+- name: Nginx info
+  shell: 'yum list nginx | grep nginx'
+  register: nginx_version
+
+- name: Set Nginx to Tomcat forwarding
+  template:
+    src: /home/student/cm/ansible/day-2/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify: ConfigChanged

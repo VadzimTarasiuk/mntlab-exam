@@ -1,0 +1,6 @@
+- name: "Deploy War to Tomcat"
+  hosts: localhost
+  roles:
+  - role: deploy
+  vars:
+    e_war: "./target/mnt-exam.war"

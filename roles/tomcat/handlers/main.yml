@@ -1,0 +1,7 @@
+---
+# handlers file for tomcat
+- name: ConfigChanged
+  service: name=tomcat.service state=restarted enabled=yes
+
+- name: DaemonChanged
+  shell: 'systemctl daemon-reload && systemctl restart tomcat.service'
