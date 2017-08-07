@@ -13,7 +13,7 @@ node("${env.SLAVE}") {
     /*
         use tar tool to package built war file into *.tar.gz package
     */
-    sh 'tar cxf mnt-exam.tar.gz target/mnt-exam.war src/main/resources/build-info.txt'
+    sh 'tar czf mnt-exam.tar.gz target/mnt-exam.war src/main/resources/build-info.txt'
     archiveArtifacts('*.tar.gz')
     sh "echo package artefact"
   }
