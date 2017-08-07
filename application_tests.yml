@@ -1,5 +1,8 @@
 - name: Check access play
   hosts: localhost
+  include_vars: deploy.yml
+  vars:
+      war_name: "{{ war | basename }}"
 
   tasks:
 
@@ -7,7 +10,7 @@
     uri:
       url: "http://{{ info['ip_addr'] }}/{{ war_name }}"
       status_code: 200 
-      
+
 - name: Web Service Testing
   hosts: vagrant
   roles:

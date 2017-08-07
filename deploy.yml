@@ -7,7 +7,6 @@
   hosts: localhost
   vars:  
     war: "./target/mnt-exam.war"
-#    war_name: "{{ war | basename }}" <--- deprecated\debug variable
     artefact: "./target/mnt-exam.war"
   
   tasks:
