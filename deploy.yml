@@ -1,6 +1,3 @@
-- name: Create VM
-  include_playbook: createvm.yml
-
 - name: Provision VM
   include_playbook: provisionvm.yml
 
@@ -9,4 +6,4 @@
   roles:
   - role: deploy
   vars:
-    e_war: "./target/mnt-exam.war"
+    artefact: "./target/mnt-exam.war"

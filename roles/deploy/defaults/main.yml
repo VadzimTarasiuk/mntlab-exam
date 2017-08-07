@@ -1,4 +1,4 @@
 ---
 # defaults file for roles/deploy
-war: "./hello-war/target/mnt-lab.war"
+war: "./target/mnt-exam.war"
 war_name: "{{ war | basename }}"
