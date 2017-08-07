@@ -29,7 +29,6 @@ node("${env.SLAVE}") {
         sh "nohup ansible-playbook createvm.yml -vv"    
       }
     }
-    sh "echo ansible-playbook createvm.yml ..."
   }
 
   stage("Provision VM"){
@@ -43,7 +42,6 @@ node("${env.SLAVE}") {
         sh "ansible-playbook provisionvm.yml -vv"    
       }
     }
-    sh "echo ansible-playbook provisionvm.yml ..."
   }
 
   stage("Deploy Artefact"){
@@ -63,7 +61,6 @@ node("${env.SLAVE}") {
         sh "ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vv"    
       }
     }
-    sh "echo ansible-playbook deploy.yml -e artefact=... ..."
   }
 
   stage("Test Artefact is deployed successfully"){
@@ -79,10 +76,10 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         
-        sh "nohup ansible-playbook application_tests.yml -e artefact=./some-war-app-42.war -vv &"    
+        sh "ansible-playbook application_tests.yml -e artefact=./some-war-app-42.war -vv"    
       }
     }
-    sh "nohup echo ansible-playbook application_tests.yml -e artefact=... ..."
+    sh 'nohup vagrant up &'
     sh 'cat createvm.yml'
     sh 'cat provisionvm.yml'
     sh 'cat roles/nginx/tasks/main.yml'
