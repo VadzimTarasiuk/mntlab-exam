@@ -1,4 +1,4 @@
-- name: "Adding hosts --> Starting VM"
+- name: "Starting VM --> Adding hosts"
   hosts: localhost
 
   tasks:
