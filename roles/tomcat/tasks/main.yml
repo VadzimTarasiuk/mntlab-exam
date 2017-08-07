@@ -57,7 +57,9 @@
       ExecStop={{ tomcat_home  }}/{{ tomcat_version }}/bin/shutdown.sh
       User={{ tomcat_user  }}
       Group={{ tomcat_group  }}
-  notify: DaemonChanged
+  notify: 
+    - DaemonChanged
+    - ConfigChanged
 
 - name: Fix for owner rights on tomcat folder
   shell: "chown -R {{ tomcat_user  }}:{{ tomcat_group  }} {{ tomcat_home  }}"
