@@ -40,7 +40,7 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         sh 'cat provisionvm.yml'
-        sh "ansible-playbook provisionvm.yml -vvv"    
+        sh "ansible-playbook provisionvm.yml -vv"    
       }
     }
     sh "echo ansible-playbook provisionvm.yml ..."
@@ -60,7 +60,7 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         sh 'cat deploy.yml'
-        sh "ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vvvv"    
+        sh "ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vv"    
       }
     }
     sh "echo ansible-playbook deploy.yml -e artefact=... ..."
