@@ -8,7 +8,7 @@
 Vagrant.configure("2") do |config|
   config.vm.define "centos2" do |c|
     c.vm.box = "sbeliakou/centos-7.3-x86_64-minimal"
-    c.vm.network "private_network", ip: "11.11.12.12"
+    c.vm.network "private_network", ip: "11.11.1.11"
     c.vm.hostname = "centos2"
     c.vm.provider "virtualbox" do |v|
 		v.memory = "2048"

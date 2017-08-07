@@ -1,9 +1,0 @@
-- name: Check access play
-  hosts: localhost
-
-  tasks:
-
-    - name: Check Access
-    uri:
-      url: "http://{{ info['ip_addr'] }}/{{ war_name }}"
-      status_code: 200 
