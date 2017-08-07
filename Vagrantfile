@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 # placeholder
 Vagrant.configure(2) do |config|
-  config.vm.box = "sbeliakou/centos-6.7-x86_64"
+  config.vm.box = "sbeliakou/centos-7.2-x86_64"
   config.vm.network "forwarded_port", guest: 8080, host: 8080
 
   config.vm.hostname = "pet"

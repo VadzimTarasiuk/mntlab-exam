@@ -5,7 +5,7 @@
 
   - name: Persist VM-state is Started
     vagrant_check: 
-      path: ./Vagrantfile
+      path: ./
       state: started
     register: info
   - name: Debugger
