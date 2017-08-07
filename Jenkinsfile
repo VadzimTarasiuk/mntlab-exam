@@ -56,7 +56,7 @@ node("${env.SLAVE}") {
         - Deployment Job
     */
     sh "echo 'Job name=${JOB_NAME}\n' > ./deploy-info.txt"
-    sh 'echo "Deployment time= $(date)\nDeployment user = $(whoami) >> ./deploy-info.txt"'
+    sh 'echo "Deployment time= $(date)\nDeployment user = $(whoami)" >> ./deploy-info.txt'
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         sh 'cat deploy.yml'

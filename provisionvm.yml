@@ -11,13 +11,14 @@
   roles: 
   - role: nginx
   - role: tomcat
-    tomcat_user: myuser 
-    tomcat_group: mygroup 
-    tomcat_home: /opt/as/tomcat 
-    tomcat_version_maj: 8
-    tomcat_version_stage: 0
-    tomcat_version_minor: 21
-    java_version: 1.8.0
+    vars:
+      tomcat_user: myuser 
+      tomcat_group: mygroup 
+      tomcat_home: /opt/as/tomcat 
+      tomcat_version_maj: 8
+      tomcat_version_stage: 0
+      tomcat_version_minor: 21
+      java_version: 1.8.0
   
   post_tasks:
     - name: Nginx Start and Enable
