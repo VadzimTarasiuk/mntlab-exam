@@ -3,6 +3,7 @@
   hosts: localhost
 - include: createvm.yml
 
+
 - name: Web Service Provisioning
   hosts: vagrant
   become: yes
@@ -31,10 +32,3 @@
         state: started
         enabled: yes
 
-
-- name: Web Service Testing
-  hosts: vagrant
-  roles:
-    - role: nginx_test
-    - role: java_test
-    - role: tomcat_test
