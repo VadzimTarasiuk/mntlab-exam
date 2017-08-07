@@ -6,13 +6,13 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-  config.vm.define "centos2" do |c|
+  config.vm.define "exam" do |c|
     c.vm.box = "sbeliakou/centos-7.3-x86_64-minimal"
     c.vm.network "private_network", ip: "11.11.1.11"
-    c.vm.hostname = "centos2"
+    c.vm.hostname = "exam"
     c.vm.provider "virtualbox" do |v|
 		v.memory = "2048"
-		v.name = "centos2"
+		v.name = "exam"
     end
   end
 end

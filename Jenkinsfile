@@ -57,11 +57,10 @@ node("${env.SLAVE}") {
     */
     sh "echo 'Job name=${JOB_NAME}\n' > ./deploy-info.txt"
     sh 'echo "Deployment time= $(date)\nDeployment user = $(whoami) >> ./deploy-info.txt"'
-    sh 'echo $(vagrant status)'
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         sh 'cat deploy.yml'
-        sh "ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vvv"    
+        sh "ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vvvv"    
       }
     }
     sh "echo ansible-playbook deploy.yml -e artefact=... ..."
@@ -76,6 +75,13 @@ node("${env.SLAVE}") {
         - Deploy User
         - Deployment Job
     */
+    sh 'echo $(vagrant status)'
+    withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
+    ansiColor('xterm') {        
+        sh 'cat application_tests.yml'
+        sh "ansible-playbook application_tests.yml -vv"    
+      }
+    }
     sh "echo ansible-playbook application_tests.yml -e artefact=... ..."
   }
 
