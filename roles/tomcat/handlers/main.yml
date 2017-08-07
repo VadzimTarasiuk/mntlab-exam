@@ -4,4 +4,6 @@
   service: name=tomcat.service state=restarted enabled=yes
 
 - name: DaemonChanged
-  service: name=tomcat.service state=reloaded enabled=yes
+  shell: "systemctl daemon-reload"
+  become: yes
+  become_user: root
