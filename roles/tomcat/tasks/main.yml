@@ -36,9 +36,10 @@
   notify: ConfigChanged
 
 - name: Transfer user-config for tomcat
-  template:
-    src: ./tomcat-users.xml.j2
+  copy:
+    src: ./tomcat-users.xml
     dest: "{{ tomcat_home }}/{{ tomcat_version }}/conf/tomcat-users.xml"
+    force: yes
   notify: ConfigChanged
 
 - name: Transfer service-file for tomcat
