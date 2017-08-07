@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook --become --become-user=root
 - name: Creation VM
-  import: creationvm.yml
+  hosts: localhost
+- include: createvm.yml
 
 - name: Web Service Provisioning
   hosts: vagrant
