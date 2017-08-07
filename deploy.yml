@@ -5,5 +5,20 @@
 
 - name: "Deploy War to Tomcat"
   hosts: localhost
-  roles:
-  - role: deploy
+  vars:  
+    war: "./target/mnt-exam.war"
+    war_name: "{{ war | basename }}"
+    artefact: "./target/mnt-exam.war"
+  
+  tasks:
+
+    - name: "Tomcat: Deploy a War"
+    deploy_module:
+      url: "http://{{ info['ip_addr'] }}" 
+      war: '{{ artefact }}'
+      username: tomcat
+      password: tomcat
+    when: info['vagrant_state'] == "running"
+
+    - name: Transfer info-file
+      shell: "scp -i {{ info['path_to_sshkey'] }} deploy-info.txt {{ info['username_toconnect'] }}@{{ info['ip_addr'] }}:/var/lib/tomcat/webapps"

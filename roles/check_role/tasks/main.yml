@@ -1,4 +1,0 @@
----
-# tasks file for roles/check_role
-- name: Check for release name
-  debug: msg={{ mongo_src | get_mongo_src("rhel", "155", "3.2.11") }}
