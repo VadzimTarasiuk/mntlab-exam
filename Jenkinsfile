@@ -26,10 +26,10 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         sh 'cat createvm.yml'
-        sh "ansible-playbook createvm.yml -vv"    
+        sh "nohup ansible-playbook createvm.yml -vv"    
       }
     }
-    sh "echo ansible-playbook createvm.yml ..."
+    sh "nohup echo ansible-playbook createvm.yml ..."
   }
 
   stage("Provision VM"){
@@ -40,10 +40,10 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         sh 'cat provisionvm.yml'
-        sh "ansible-playbook provisionvm.yml -vv"    
+        sh "nohup ansible-playbook provisionvm.yml -vv"    
       }
     }
-    sh "echo ansible-playbook provisionvm.yml ..."
+    sh "nohup echo ansible-playbook provisionvm.yml ..."
   }
 
   stage("Deploy Artefact"){
@@ -60,10 +60,10 @@ node("${env.SLAVE}") {
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
         sh 'cat deploy.yml'
-        sh "ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vv"    
+        sh "nohup ansible-playbook deploy.yml -e artefact=./some-war-app-42.war -vv"    
       }
     }
-    sh "echo ansible-playbook deploy.yml -e artefact=... ..."
+    sh "nohup echo ansible-playbook deploy.yml -e artefact=... ..."
   }
 
   stage("Test Artefact is deployed successfully"){
