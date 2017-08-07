@@ -7,7 +7,7 @@
   hosts: localhost
   vars:  
     war: "./target/mnt-exam.war"
-    war_name: "{{ war | basename }}"
+#    war_name: "{{ war | basename }}" <--- deprecated\debug variable
     artefact: "./target/mnt-exam.war"
   
   tasks:
@@ -23,8 +23,11 @@
   - name: Debug
     debug: msg={{ info['vagrant_state'] }}
 
+- name: Deploy info Play
+  hosts: vagrant
+  tasks:
   - name: Transfer info-file
-    shell: "scp -i {{ info['path_to_sshkey'] }} deploy-info.txt {{ info['username_toconnect'] }}@{{ info['ip_addr'] }}:/var/lib/tomcat/webapps"
-    become: yes
-    become_user: student
+    copy: 
+      src: ./deploy-info.txt
+      dest: /var/lib/tomcat/webapps
     when: info['vagrant_state'] == "running"
