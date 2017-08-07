@@ -3,7 +3,7 @@
 - name: "Tomcat: Deploy a War"
   deploy_module:
     url: "http://{{ info['ip_addr'] }}" 
-    war: '{{ e_war }}'
+    war: '{{ artefact }}'
     username: tomcat
     password: tomcat
     ipcheck: "{{ info['ip_addr'] }}"
