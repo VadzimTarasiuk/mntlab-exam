@@ -22,7 +22,9 @@ node("${env.SLAVE}") {
     /*
         use ansible to create VM (with developed vagrant module)
     */
-    sh 'ansible-playbook createvm.yml -vv'
+    ansiColor('xterm') {    
+      echo 'ansible-playbook createvm.yml -vv'
+    }
     sh "echo ansible-playbook createvm.yml ..."
   }
 
