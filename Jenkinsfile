@@ -1,6 +1,7 @@
 node("${env.SLAVE}") {
 
   stage("Build"){
+    sh 'vagrant destroy -f'
     deleteDir()
     git branch: 'vtarasiuk', url: 'https://github.com/VadzimTarasiuk/mntlab-exam.git'
     sh  'echo "Build time = $(date)\nBuild Machine Name = $(hostname)\nBuild User Name = vtarasiuk\n" > ./src/main/resources/build-info.txt'
@@ -14,7 +15,7 @@ node("${env.SLAVE}") {
         use tar tool to package built war file into *.tar.gz package
     */
     sh 'tar czf mnt-exam.tar.gz target/mnt-exam.war src/main/resources/build-info.txt'
-    archiveArtifacts('*.tar.gz')
+    archiveArtifacts artifacts: '*.tar.gz', onlyIfSuccessful: true
     sh "echo package artefact"
   }
 

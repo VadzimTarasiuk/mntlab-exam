@@ -1,4 +1,6 @@
 #!/usr/bin/env ansible-playbook --become --become-user=root
+- name: Creation VM
+  include_playbook: creationvm.yml
 
 - name: Web Service Provisioning
   hosts: vagrant
@@ -8,7 +10,7 @@
   - role: nginx
   - role: tomcat
     tomcat_user: myuser 
-    tomcat_group: thisgroup 
+    tomcat_group: mygroup 
     tomcat_home: /opt/as/tomcat 
     tomcat_version_maj: 8
     tomcat_version_stage: 0
