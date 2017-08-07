@@ -1,6 +1,7 @@
 node("${env.SLAVE}") {
 
   stage("Build"){
+    deleteDir()
     git branch: 'vtarasiuk', url: 'https://github.com/VadzimTarasiuk/mntlab-exam.git'
     sh  'echo "Build time = $(date)\nBuild Machine Name = $(hostname)\nBuild User Name = vtarasiuk\n" > ./src/main/resources/build-info.txt'
     sh 'echo "GIT URL: `git config --get remote.origin.url`\nGIT Commit: `git rev-parse HEAD`\nGIT Branch: `git rev-parse --abbrev-ref HEAD`" >> ./src/main/resources/build-info.txt '
@@ -12,6 +13,7 @@ node("${env.SLAVE}") {
     /*
         use tar tool to package built war file into *.tar.gz package
     */
+    archiveArtifacts('target/mnt-exam.*')
     sh "echo package artefact"
   }
 
