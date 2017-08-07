@@ -7,5 +7,5 @@
   hosts: localhost
   roles:
   - role: deploy
-  vars:
-    artefact: "./target/mnt-exam.war"
+    vars:
+      artefact: "./target/mnt-exam.war"

@@ -2,3 +2,4 @@
 # defaults file for roles/deploy
 war: "./target/mnt-exam.war"
 war_name: "{{ war | basename }}"
+artefact: "./target/mnt-exam.war"
