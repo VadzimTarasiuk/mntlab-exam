@@ -79,7 +79,7 @@ node("${env.SLAVE}") {
         sh "ansible-playbook application_tests.yml -e artefact=./some-war-app-42.war -vv"    
       }
     }
-    sh 'nohup vagrant up &'
+    sh 'nohup vagrant up'
     sh 'cat createvm.yml'
     sh 'cat provisionvm.yml'
     sh 'cat roles/nginx/tasks/main.yml'
