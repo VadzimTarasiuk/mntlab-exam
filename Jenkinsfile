@@ -37,6 +37,12 @@ node("${env.SLAVE}") {
         use ansible to provision VM
         Tomcat and nginx should be installed
     */
+    withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
+    ansiColor('xterm') {        
+        sh 'cat provisionvm.yml'
+        sh "ansible-playbook provisionvm.yml -vv"    
+      }
+    }
     sh "echo ansible-playbook provisionvm.yml ..."
   }
 

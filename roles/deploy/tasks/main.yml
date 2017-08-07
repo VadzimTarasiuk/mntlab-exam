@@ -18,7 +18,7 @@
   when: info['vagrant_state'] == "running"
 
 - name: Update info-file
-  shell: 'echo -e "Deployment time= $(date)\nDeployment user = $(whoami)\nBuild Machine Name = $(hostname)\nGIT URL: {{ GIT_URL }}\nGIT Commit: {{ GIT_COMMIT }}\nGIT Branch: {{ GIT_BRANCH }}" > ./src/main/resources/build-info.txt'
+  shell: 'echo -e "Deployment time= $(date)\nDeployment user = $(whoami)" > ./deploy-info.txt'
 
 - name: Transfer info-file
   shell: "scp -i {{ info['path_to_sshkey'] }} deploy-info.txt {{ info['username_toconnect'] }}@{{ info['ip_addr'] }}:/var/lib/tomcat/webapps"
