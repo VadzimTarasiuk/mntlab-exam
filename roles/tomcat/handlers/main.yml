@@ -4,4 +4,4 @@
   service: name=tomcat.service state=restarted enabled=yes
 
 - name: DaemonChanged
-  shell: 'systemctl daemon-reload && systemctl restart tomcat.service'
+  service: name=tomcat.service state=reloaded enabled=yes

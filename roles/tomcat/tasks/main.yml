@@ -46,7 +46,7 @@
   copy:
     src: ./tomcat.service
     dest: /etc/systemd/system/tomcat.service
-    force: no
+    force: yes
 
 - name: Creating an abcolute and actual path for Catalina
   blockinfile:

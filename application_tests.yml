@@ -1,0 +1,16 @@
+- name: Check access play
+  hosts: localhost
+
+  tasks:
+
+    - name: Check Access
+    uri:
+      url: "http://{{ info['ip_addr'] }}/{{ war_name }}"
+      status_code: 200 
+      
+- name: Web Service Testing
+  hosts: vagrant
+  roles:
+    - role: nginx_test
+    - role: java_test
+    - role: tomcat_test
