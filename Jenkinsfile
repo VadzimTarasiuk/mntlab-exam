@@ -1,4 +1,4 @@
-node("${env.SLAVE}") {
+node() {
 
   stage("Build"){
     git branch: 'vtarasiuk', url: 'https://github.com/VadzimTarasiuk/mntlab-exam.git'
