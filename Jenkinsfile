@@ -1,6 +1,8 @@
-node() {
+node("${env.SLAVE}") {
 
   stage("Build"){
+    sh 'vagrant destroy -f'
+    deleteDir()
     git branch: 'vtarasiuk', url: 'https://github.com/VadzimTarasiuk/mntlab-exam.git'
     sh  'echo "Build time = $(date)\nBuild Machine Name = $(hostname)\nBuild User Name = vtarasiuk\n" > ./src/main/resources/build-info.txt'
     sh 'echo "GIT URL: `git config --get remote.origin.url`\nGIT Commit: `git rev-parse HEAD`\nGIT Branch: `git rev-parse --abbrev-ref HEAD`" >> ./src/main/resources/build-info.txt '
@@ -82,8 +84,6 @@ node() {
     sh 'cat roles/tomcat/tasks/main.yml'
     sh 'cat deploy.yml'
     sh 'cat application_tests.yml'
-    sh 'vagrant destroy -f'
-    deleteDir()
   }
 
 }
