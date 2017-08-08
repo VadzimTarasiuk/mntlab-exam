@@ -4,7 +4,7 @@ node() {
     git branch: 'vtarasiuk', url: 'https://github.com/VadzimTarasiuk/mntlab-exam.git'
     sh  'echo "Build time = $(date)\nBuild Machine Name = $(hostname)\nBuild User Name = vtarasiuk\n" > ./src/main/resources/build-info.txt'
     sh 'echo "GIT URL: `git config --get remote.origin.url`\nGIT Commit: `git rev-parse HEAD`\nGIT Branch: `git rev-parse --abbrev-ref HEAD`" >> ./src/main/resources/build-info.txt '
-    sh '/home/student/apache-maven-3.5.0/bin/mvn clean package -DbuildNumber=42'
+    sh 'mvn clean package -DbuildNumber=42'
   }
 
   stage("Package"){
