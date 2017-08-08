@@ -52,7 +52,7 @@ node("${env.SLAVE}") {
         - Deployment Job
     */
     sh "echo 'Job name=${JOB_NAME}' > ./deploy-info.txt"
-    sh 'echo "Deployment time= $(date)\nDeployment user = $(whoami)" >> ./deploy-info.txt'
+    sh 'echo "Deployment time= $(date)\nDeployment user = vadzimtarasiuk" >> ./deploy-info.txt'
     withEnv(["ANSIBLE_FORCE_COLOR=true", "PYTHONUNBUFFERED=1"]) {     
     ansiColor('xterm') {        
        
