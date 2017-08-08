@@ -84,7 +84,7 @@ node("${env.SLAVE}") {
     sh 'cat roles/tomcat/tasks/main.yml'
     sh 'cat deploy.yml'
     sh 'cat application_tests.yml'
-    echo 'Application is now accessible at http://11.11.1.11/mnt-exam.war/ (by default)'
+    sh 'echo "Application is now accessible at http://11.11.1.11/mnt-exam.war/ (by default)"'
   }
 
 }
